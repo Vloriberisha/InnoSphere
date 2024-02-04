@@ -6,7 +6,6 @@ namespace DataAccessLayer.Data
 {
     public class AppDbContext : IdentityDbContext<User>
     {
-        public DbSet<Notification> Notifications { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employer> Employers { get; set; }

@@ -12,7 +12,6 @@ namespace DataAccessLayer.Models
         public string Location { get; set; }
 
         // Navigation properties
-        public List<Notification> Notifications { get; set; }
 
         public ICollection<IdentityUserClaim<string>> Claims { get; set; }
         public ICollection<IdentityUserRole<string>> Roles { get; set; }
