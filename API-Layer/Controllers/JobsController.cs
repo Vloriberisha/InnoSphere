@@ -1,9 +1,5 @@
-﻿using Azure.Core;
-using Bussiness_Logic_Layer.DTOs;
+﻿using Bussiness_Logic_Layer.DTOs;
 using Bussiness_Logic_Layer.Repositories;
-using Bussiness_Logic_Layer.Services;
-using DataAccessLayer.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Layer.Controllers

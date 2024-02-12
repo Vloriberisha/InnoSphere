@@ -1,5 +1,4 @@
 ﻿
-using Bussiness_Logic_Layer.Services;
 using DataAccessLayer.Data;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Identity;
@@ -50,27 +49,27 @@ namespace Bussiness_Logic_Layer.Repositories
         {
             var employers = await _userManager.GetUsersInRoleAsync("Employer");
 
-            List<Employer> employersList = new List<Employer>();
+            List<Employer> employersList = new();
 
             foreach (var user in employers)
             {
                 var employer = await _context.Employers.FirstOrDefaultAsync(e => e.UserId == user.Id);
 
-                employer.User = user;
-
-                var _jobs = await _context.Jobs.Where(j => j.CompanyId == user.Id).ToListAsync();
-                if (_jobs != null)
+                if (employer != null)
                 {
-                    employer.JobsPosted = _jobs;
+                    employer.User = user;
+
+                    var _jobs = await _context.Jobs.Where(j => j.CompanyId == user.Id).ToListAsync();
+                    if (_jobs != null)
+                    {
+                        employer.JobsPosted = _jobs;
+                    }
+                    employersList.Add(employer);
                 }
-                employersList.Add(employer);
             }
 
             return employersList;
-
         }
-
         #endregion
-
     }
 }

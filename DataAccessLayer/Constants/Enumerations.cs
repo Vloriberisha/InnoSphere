@@ -5,19 +5,6 @@ namespace DataAccessLayer.Constants
     public class Enumerations
     {
 
-        public enum NotificationType
-        {
-            Information,
-            Success,
-            Warning,
-            Error
-        }
-
-        public enum NotificationStatus
-        {
-            Read,
-            Unread
-        }
         public enum JobApplicationStatus
         {
             Submitted,

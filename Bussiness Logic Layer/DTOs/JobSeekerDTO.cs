@@ -1,6 +1,4 @@
-﻿using DataAccessLayer.Models;
-
-namespace Bussiness_Logic_Layer.DTOs
+﻿namespace Bussiness_Logic_Layer.DTOs
 {
     public class JobSeekerDTO
     {

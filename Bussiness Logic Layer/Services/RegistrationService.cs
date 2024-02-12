@@ -9,7 +9,7 @@ namespace Bussiness_Logic_Layer.Services
 {
     public interface IRegistrationService
     {
-        Task Register(RegisterCandidateDTO request);
+        Task Register(RegisterJobSeekerDTO request);
         Task Register(RegisterCompanyDTO request);
     }
     public class RegistrationService : IRegistrationService
@@ -72,7 +72,7 @@ namespace Bussiness_Logic_Layer.Services
             await _context.Employers.AddAsync(employer);
         }
 
-        public async Task Register(RegisterCandidateDTO request)
+        public async Task Register(RegisterJobSeekerDTO request)
         {
             if (request == null)
             {

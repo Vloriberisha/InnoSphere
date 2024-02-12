@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-
-namespace DataAccessLayer.Models
+﻿namespace DataAccessLayer.Models
 {
     public class JobApplication
     {
@@ -12,8 +9,5 @@ namespace DataAccessLayer.Models
         public Job Job { get; set; }
         public string JobSeekerId { get; set; }
         public JobSeeker JobSeeker{ get; set; }
-
-
-        //
     }
 }

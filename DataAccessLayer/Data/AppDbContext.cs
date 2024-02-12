@@ -36,20 +36,19 @@ namespace DataAccessLayer.Data
 
            
 
-            //1 user ka shume aplikime
+            //A user has a lot of applications
             modelBuilder.Entity<JobSeeker>()
                 .HasMany(u => u.JobApplications)
                 .WithOne(ja => ja.JobSeeker)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // 1 user qe eshte company ka shume postime
+            //A user that is in a company has a lot of posts
             modelBuilder.Entity<Employer>()
                 .HasMany(u => u.JobsPosted)
                 .WithOne(j => j.Company)
                 .OnDelete(DeleteBehavior.Cascade);
 
-
-            //Shume me shume per job application
+            //Many to many for job application
             modelBuilder.Entity<JobApplication>()
                 .HasKey(up => new { up.Id,up.JobSeekerId, up.JobId});
             modelBuilder.Entity<JobApplication>()
@@ -62,11 +61,6 @@ namespace DataAccessLayer.Data
                 .WithMany(p => p.Applications)
                 .HasForeignKey(u => u.JobId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
-
-
-
 
             // Ensure cascading delete for Identity-related entities
             modelBuilder.Entity<User>()

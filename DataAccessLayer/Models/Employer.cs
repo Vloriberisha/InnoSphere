@@ -11,7 +11,6 @@ namespace DataAccessLayer.Models
         [ForeignKey(nameof(UserId))]
         public User User { get; set; }
 
-        // Additional properties for Employer
         public string Photo { get; set; }
         public string Founded { get; set; }
         public string Founder { get; set; }

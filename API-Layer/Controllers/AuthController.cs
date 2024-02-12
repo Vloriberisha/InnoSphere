@@ -1,6 +1,5 @@
 ﻿using Bussiness_Logic_Layer.DTOs;
 using Bussiness_Logic_Layer.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Layer.Controllers
@@ -18,7 +17,7 @@ namespace API_Layer.Controllers
         }
         #region REGISTER
         [HttpPost("register-user")]
-        public async Task<IActionResult> RegisterUser([FromForm] RegisterCandidateDTO request)
+        public async Task<IActionResult> RegisterUser([FromForm] RegisterJobSeekerDTO request)
         {
             try
             {

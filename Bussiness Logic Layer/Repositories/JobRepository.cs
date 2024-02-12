@@ -33,12 +33,7 @@ namespace Bussiness_Logic_Layer.Repositories
                 throw new Exception("Id is null");
             }
             var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == id);
-            if (job == null)
-            {
-                throw new Exception("Couldnt find job!");
-            }
-
-            return job;
+            return job == null ? throw new Exception("Couldnt find job!") : job;
         }
         public async Task<List<Job>> GetEmployersJobs(string id)
         {

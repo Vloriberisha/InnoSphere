@@ -1,6 +1,6 @@
 ﻿namespace Bussiness_Logic_Layer.DTOs
 {
-    public class RegisterCandidateDTO
+    public class RegisterJobSeekerDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
