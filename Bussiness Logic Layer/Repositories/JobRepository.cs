@@ -33,7 +33,7 @@ namespace Bussiness_Logic_Layer.Repositories
                 throw new Exception("Id is null");
             }
             var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == id);
-            return job == null ? throw new Exception("Couldnt find job!") : job;
+            return job ?? throw new Exception("Couldnt find job!");
         }
         public async Task<List<Job>> GetEmployersJobs(string id)
         {
@@ -50,7 +50,7 @@ namespace Bussiness_Logic_Layer.Repositories
 
                 job.CompanyName = user.UserName;
                 job.CompanyLocation = user.Location;
-                job.CompanyPhoto = employer.Photo;
+                job.CompanyPhoto = employer?.Photo;
                 job.ApplicationsNo = await _context.JobApplications.Where(j => j.JobId == job.Id).CountAsync();
             }
 
@@ -68,7 +68,7 @@ namespace Bussiness_Logic_Layer.Repositories
 
                 job.CompanyName = user.UserName;
                 job.CompanyLocation = user.Location;
-                job.CompanyPhoto = employer.Photo;
+                job.CompanyPhoto = employer?.Photo;
             }
 
             return jobs;
@@ -85,15 +85,17 @@ namespace Bussiness_Logic_Layer.Repositories
 
                 job.CompanyName = user.UserName;
                 job.CompanyLocation = user.Location;
-                job.CompanyPhoto = employer.Photo;
+                job.CompanyPhoto = employer?.Photo;
             }
 
             if (!string.IsNullOrEmpty(keyword))
             {
+                string keywordLower = keyword.ToLower();
                 jobs = jobs.Where(job =>
-                job.JobTitle.ToLower().Contains(keyword.ToLower()) ||
-                job.JobDescription.ToLower().Contains(keyword.ToLower()) ||
-                job.Skills.ToLower().Contains(keyword.ToLower())).ToList();
+                    job.JobTitle.Contains(keywordLower, StringComparison.OrdinalIgnoreCase) ||
+                    job.JobDescription.Contains(keywordLower, StringComparison.OrdinalIgnoreCase) ||
+                    job.Skills.Contains(keywordLower, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
             }
 
             if (!string.IsNullOrEmpty(location))

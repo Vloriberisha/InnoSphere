@@ -27,29 +27,35 @@ namespace Bussiness_Logic_Layer.Repositories
         public async Task<Employer> GetEmployer(string id)
         {
             if (id == null)
-            {
-                throw new Exception("Id is empty");
-            }
+                throw new ArgumentNullException(nameof(id), "Id is null");
 
             var user = await _identity.GetEmployerById(id);
             var employer = await _context.Employers.FirstOrDefaultAsync(e => e.UserId == user.Id);
 
-            employer.User = user;
-
-            var _jobs = await _context.Jobs.Where(j => j.CompanyId == id).ToListAsync();
-            if (_jobs != null)
+            if (employer != null)
             {
-                employer.JobsPosted = _jobs;
-            }
+                employer.User = user;
 
-            return employer;
+                var _jobs = await _context.Jobs.Where(j => j.CompanyId == id).ToListAsync();
+                if (_jobs != null)
+                {
+                    employer.JobsPosted = _jobs;
+                }
+
+                return employer;
+            }
+            else
+            {
+                return new(); 
+            }
         }
+
 
         public async Task<List<Employer>> GetEmployers()
         {
             var employers = await _userManager.GetUsersInRoleAsync("Employer");
 
-            List<Employer> employersList = new();
+            List<Employer> employersList = [];
 
             foreach (var user in employers)
             {

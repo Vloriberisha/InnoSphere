@@ -34,11 +34,14 @@ namespace API_Layer.Controllers
             try
             {
                 var jobs = await _repository.GetEmployersJobs(id);
-                return Ok(jobs);
+                if (jobs.Count != 0)
+                    return Ok(jobs);
+                else
+                    return NotFound();
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message );
+                return BadRequest(ex.Message);
             }
         }
 
@@ -52,16 +55,16 @@ namespace API_Layer.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest( ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
         [HttpGet("get-filtered-jobs")]
-        public async Task<IActionResult> GetFilteredJobs([FromQuery] string? keyword,[FromQuery] string? location, [FromQuery] string? type)
+        public async Task<IActionResult> GetFilteredJobs([FromQuery] string? keyword, [FromQuery] string? location, [FromQuery] string? type)
         {
             try
             {
-                var jobs = await _repository.GetFilteredJobs(keyword,location,type);
+                var jobs = await _repository.GetFilteredJobs(keyword, location, type);
                 return Ok(jobs);
             }
             catch (Exception ex)
@@ -78,11 +81,11 @@ namespace API_Layer.Controllers
             try
             {
                 await _repository.PostJob(request);
-                return Ok ("Job posted succesfully");
+                return Ok("Job posted succesfully");
             }
             catch (Exception ex)
             {
-                return BadRequest (ex.Message );
+                return BadRequest(ex.Message);
             }
         }
         #endregion
@@ -98,7 +101,7 @@ namespace API_Layer.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message );
+                return BadRequest(ex.Message);
             }
         }
         #endregion

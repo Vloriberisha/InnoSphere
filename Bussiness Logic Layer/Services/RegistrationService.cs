@@ -87,7 +87,7 @@ namespace Bussiness_Logic_Layer.Services
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                UserName = request.FirstName + request.LastName + Guid.NewGuid().ToString().Substring(0, 5),
+                UserName = request.FirstName + request.LastName + Guid.NewGuid().ToString()[..5],
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
                 Location = request.Location,

@@ -2,7 +2,7 @@
 {
     public class JobApplicationDTO
     {
-        public string JobId { get; set; }
-        public string JobSeekerId { get; set; }
+        public string? JobId { get; set; }
+        public string? JobSeekerId { get; set; }
     }
 }

@@ -81,7 +81,9 @@ namespace Bussiness_Logic_Layer.Repositories
             var job = await _context.Jobs.FirstOrDefaultAsync(j => j.Id == request.JobId);
 
             if (job == null)
+            {
                 throw new Exception("Couldnt find job!");
+            }
 
             var application = new JobApplication
             {
